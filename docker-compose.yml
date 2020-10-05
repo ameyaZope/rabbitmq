@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  producer:
+    build: ./rabbitmqproducer/
+    ports:
+      - 9080:8080
+      - 9081:8081
+  consumer:
+    build: ./rabbitmqconsumer/
+    ports:
+      - 8080:8080
+      - 8081:8081
+  rabbitmq:
+    image: rabbitmq:3.8.3-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: pass
+    ports:
+      - 5672:5672
+      - 15672:15672
